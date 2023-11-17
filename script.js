@@ -1,9 +1,10 @@
 const img = document.querySelector(`img`);
-const refresh = document.getElementById("refresh");
+const search = document.getElementById("search");
+const input = document.getElementById("input");
 
-function getImage() {
+function getImage(input) {
   fetch(
-    "https://api.giphy.com/v1/gifs/translate?api_key=1dYtDfVcAbsOe6Ipxa6Rc6cgtMy8tuk4&s=cats",
+    `https://api.giphy.com/v1/gifs/translate?api_key=1dYtDfVcAbsOe6Ipxa6Rc6cgtMy8tuk4&s=${input}`,
     { mode: "cors" }
   )
     .then(function (response) {
@@ -20,8 +21,10 @@ function getImage() {
     });
 }
 
-getImage();
-refresh.addEventListener("click", () => {
-  console.log(`clicked refresh`);
-  getImage();
+search.addEventListener("click", () => {
+  console.log(`search term: ${input.value}`);
+  getImage(input.Value);
 });
+
+getImage(`dogs`);
+
