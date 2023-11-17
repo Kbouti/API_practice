@@ -3,10 +3,9 @@ const search = document.getElementById("search");
 const input = document.getElementById("input");
 
 function getImage(input) {
-  fetch(
-    `https://api.giphy.com/v1/gifs/translate?api_key=1dYtDfVcAbsOe6Ipxa6Rc6cgtMy8tuk4&s=${input}`,
-    { mode: "cors" }
-  )
+  let URL = `https://api.giphy.com/v1/gifs/translate?api_key=1dYtDfVcAbsOe6Ipxa6Rc6cgtMy8tuk4&s=${input}`;
+  console.log(`URL = ${URL}`);
+  fetch(URL, { mode: "cors" })
     .then(function (response) {
       // A Promise!
       return response.json();
@@ -17,14 +16,23 @@ function getImage(input) {
       // Then getting the URL out of the object we have just returned^
       console.log(response.data.images.original.url);
       // Got it! Now let's set it as the image source:
-      img.src = response.data.images.original.url;
+
+      let reponseData = response.data;
+      if (reponseData == []) {
+        console.log(`edge case error achieved?`);
+        alert(`you searched for something that doesn't exist`);
+      } else img.src = response.data.images.original.url;
+    })
+    .catch(function (error) {
+      alert(`Search failed, nothing in the search bar`);
+      console.log(error);
     });
 }
 
 search.addEventListener("click", () => {
   console.log(`search term: ${input.value}`);
-  getImage(input.Value);
+  let newInput = input.value;
+  getImage(newInput);
 });
 
 getImage(`dogs`);
-
