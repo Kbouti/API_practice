@@ -4,29 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title><link rel="stylesheet" href="style.css">
-    <script src="style.css" defer></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
+    <button id="refresh">Refresh</button>
     <img src="#" alt="Image fetched from giphy">
-    
 </body>
 
-
-<script>
-    const img = document.querySelector(`img`);
-    fetch('https://api.giphy.com/v1/gifs/translate?api_key=1dYtDfVcAbsOe6Ipxa6Rc6cgtMy8tuk4&s=cats', {mode: 'cors'})
-    .then(function(response){
-        // A Promise! 
-        return response.json();
-    })
-    .then(function(response){
-        // Unwrapping another level of promise
-        console.log(response);
-        // Then getting the URL out of the object we have just returned^
-        console.log(response.data.images.original.url);
-        // Got it! Now let's set it as the image source:
-        img.src = response.data.images.original.url
-    });
-</script>
 
 </html>
