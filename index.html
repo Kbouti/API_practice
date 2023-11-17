@@ -24,7 +24,8 @@
         console.log(response);
         // Then getting the URL out of the object we have just returned^
         console.log(response.data.images.original.url);
-        // console.log(typeof(response));
+        // Got it! Now let's set it as the image source:
+        img.src = response.data.images.original.url
     });
 </script>
 
