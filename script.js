@@ -37,18 +37,15 @@ getImage(`dogs`);
 
 
 // written using an async function:
+// This is does the same thing as our original function above. Only difference is we haven't added in edge case hamdlers. 
 
 async function getGiph(input) {
-    fetch(`https://api.giphy.com/v1/gifs/translate?api_key=1dYtDfVcAbsOe6Ipxa6Rc6cgtMy8tuk4&s=${input}`, {mode: 'cors'})
-    .then(function(response) {
-        return response.json();
-    })
-    .then(function(response){
-        img.src = response.data.images.original.url;
-    })
+    const response = await fetch(`https://api.giphy.com/v1/gifs/translate?api_key=1dYtDfVcAbsOe6Ipxa6Rc6cgtMy8tuk4&s=${input}`, {mode: 'cors'})
+    const apiData = await response.json();
+    img.src = apiData.data.images.original.url;
 }   
 
-
+getGiph(`trains`);
 
 
 
